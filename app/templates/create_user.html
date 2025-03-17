@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Create User</h1>
+
+<form method="POST" class="form-group">
+    <label>Username:</label>
+    <input type="text" name="username" class="form-control" required>
+
+    <label>Email:</label>
+    <input type="email" name="email" class="form-control" required>
+
+    <label>Password:</label>
+    <input type="password" name="password" class="form-control" required>
+
+    <label>Role:</label>
+    <select name="role" class="form-select">
+        <option value="organizer">Organizer</option>
+        <option value="attendee">Attendee</option>
+    </select>
+
+    <button type="submit" class="btn btn-primary mt-3">Create User</button>
+</form>
+{% endblock %}

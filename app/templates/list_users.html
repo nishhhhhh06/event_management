@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1>Manage Users</h1>
+
+<a href="{{ url_for('users.create_user') }}" class="btn btn-success mb-3">+ Create User</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+            <td>
+                {% if user.role != "admin" %}
+
+                    <form action="{{ url_for('users.update_user', user_id=user.id) }}" method="POST" style="display:inline;">
+                        <select name="role" class="form-select d-inline w-auto" onchange="this.form.submit()">
+                            <option value="organizer" {% if user.role == "organizer" %}selected{% endif %}>Organizer</option>
+                            <option value="attendee" {% if user.role == "attendee" %}selected{% endif %}>Attendee</option>
+                        </select>
+                    </form>
+
+                    <form action="{{ url_for('users.delete_user', user_id=user.id) }}" method="POST" style="display:inline;"
+                          onsubmit="return confirm('Are you sure you want to delete {{ user.username }}?');">
+                        <button type="submit" class="btn btn-danger btn-sm">🗑️ Delete</button>
+                    </form>
+                {% else %}
+                    <span class="text-muted">Admin</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

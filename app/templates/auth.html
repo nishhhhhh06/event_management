@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Login/Register{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+{% endblock %}
+
+
+{% block content %}
+<h1>{{ 'Login' if login else 'Register' }}</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    
+    {% if not login %}
+        <p>{{ form.username.label }} {{ form.username }}</p>
+    {% endif %}
+    
+    <p>{{ form.email.label }} {{ form.email }}</p>
+    <p>{{ form.password.label }} {{ form.password }}</p>
+    
+    {% if not login %}
+        <p>{{ form.confirm_password.label }} {{ form.confirm_password }}</p>
+        <p>{{ form.role.label }} {{ form.role }}</p>
+    {% endif %}
+    
+    <p>{{ form.submit }}</p>
+</form>
+
+<p>
+    {% if login %}
+        Don't have an account? <a href="{{ url_for('auth.register') }}">Register here</a>
+    {% else %}
+        Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a>
+    {% endif %}
+</p>
+
+{% endblock %}
