@@ -31,6 +31,7 @@ pip install -r requirements.txt
 
 
 ### **5️⃣ Initialize the Database**
+add user database credentials in the config file
 ```bash
 flask db init
 flask db migrate -m "Initial migration."
