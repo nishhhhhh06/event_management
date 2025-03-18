@@ -6,7 +6,8 @@ This is a **Flask-based Event Management System** that allows users to create, m
 - **Organizer**: Can create, update, and delete events.
 - **Attendee**: Can view and join events.
 
-It also includes features like user authentication, email notifications, event search/filter and role-based access
+It also includes features like user authentication, email notifications, event search/filter and role-based access.
+Also added basic UI to check the APIs functionality.
 
 ---
 ## 🚀 Setup and Installation
@@ -31,7 +32,8 @@ pip install -r requirements.txt
 
 
 ### **5️⃣ Initialize the Database**
-add user database credentials in the config file
+add user database credentials in the config file. 
+create 'event_management_db' database in MySQL
 ```bash
 flask db init
 flask db migrate -m "Initial migration."
@@ -49,7 +51,7 @@ Your application will be running at: **`http://127.0.0.1:5000/`**
 ## 📧 Email Notifications
 Users receive email notifications when they **create** or **join** an event.
 Ensure that you have enabled **Less Secure Apps** or used an **App Password** in Gmail settings.
-also uncomment the code for email sending.
+Also uncomment the code for email sending.
 
 
 
